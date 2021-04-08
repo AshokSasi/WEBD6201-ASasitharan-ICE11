@@ -73,7 +73,7 @@ import {AuthGuard} from '../Util/index';
 //route configuration
 app.use('/', indexRouter);
 
-app.use('/contact-list',AuthGuard, contactListRouter);
+app.use('/contact-list', contactListRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
