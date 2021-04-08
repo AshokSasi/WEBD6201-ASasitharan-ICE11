@@ -1,5 +1,4 @@
 
-
 namespace core
 {
    
@@ -99,7 +98,7 @@ namespace core
     function displayContactList() :void
     {
       // don't allow visitors to go here
-
+      //authGuard();
 
       // confirm deletion
       $("a.delete").on("click", function(event){
@@ -121,16 +120,10 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+      //Validation
     }
 
 
-   function displayRegister()
-   {
-
-   }
-
-   
     
 
     /**
@@ -151,8 +144,9 @@ namespace core
         case 'login':
           displayLogin();
           break;
+        case 'logout':
+          performLogout();
         case 'register':
-          displayRegister();
           break;
         case 'contact-list':
           displayContactList();

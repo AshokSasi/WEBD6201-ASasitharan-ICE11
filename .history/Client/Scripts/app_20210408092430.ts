@@ -1,4 +1,4 @@
-
+import { DisplayRegisterPage } from "../../Server/Controllers";
 
 namespace core
 {
@@ -121,14 +121,17 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+
     }
 
 
-   function displayRegister()
-   {
-
-   }
+    function authGuard():void
+    {
+      if(!sessionStorage.getItem("user"))
+      {
+      location.href = '/login';
+      }
+    }
 
    
     
@@ -152,7 +155,7 @@ namespace core
           displayLogin();
           break;
         case 'register':
-          displayRegister();
+          displayRegisterPage();
           break;
         case 'contact-list':
           displayContactList();

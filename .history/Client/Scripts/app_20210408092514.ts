@@ -121,7 +121,7 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+
     }
 
 

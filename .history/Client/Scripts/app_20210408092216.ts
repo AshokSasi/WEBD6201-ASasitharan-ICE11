@@ -1,4 +1,4 @@
-
+import { DisplayRegisterPage } from "../../Server/Controllers";
 
 namespace core
 {
@@ -99,7 +99,7 @@ namespace core
     function displayContactList() :void
     {
       // don't allow visitors to go here
-
+      //authGuard();
 
       // confirm deletion
       $("a.delete").on("click", function(event){
@@ -121,16 +121,10 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+      //Validation
     }
 
 
-   function displayRegister()
-   {
-
-   }
-
-   
     
 
     /**
@@ -152,7 +146,7 @@ namespace core
           displayLogin();
           break;
         case 'register':
-          displayRegister();
+          displayRegisterPage();
           break;
         case 'contact-list':
           displayContactList();

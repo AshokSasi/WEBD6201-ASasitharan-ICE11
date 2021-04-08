@@ -1,58 +1,46 @@
 import express, {Request, Response, NextFunction} from 'express';
+const router = express.Router();
 
+import mongoose from 'mongoose';
 import passport, { Passport } from 'passport';
 
 //create User Model Instance
 import User from '../Models/user';
 
-//Helper Function
-function UserDisplayName(req:Request): String
-{
-    if(req.user)
-    {
-        let user = req.user as UserDocument;
-        return user.displayName.toString();
-
-    }
-    return '';
-}
-
-
 //Display page functions
 export function DisplayHomePage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req)    });
+    res.render('index', { title: 'Home', page: 'home', displayName: ''    });
 }
 export function DisplayAboutPage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'About Us', page: 'about',displayName: UserDisplayName(req)       });
+    res.render('index', { title: 'About Us', page: 'about', displayName: ''    });
 }
 
 export function DisplayServicesPage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'Our Services', page: 'services',displayName: UserDisplayName(req)      });
+    res.render('index', { title: 'Our Services', page: 'services', displayName: ''    });
 }
 
 export function DisplayProjectsPage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'Our Projects', page: 'projects',displayName: UserDisplayName(req)      });
+    res.render('index', { title: 'Our Projects', page: 'projects', displayName: ''    });
 }
 
 export function DisplayContactPage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'Contact Us', page: 'contact',displayName: UserDisplayName(req)      });
+    res.render('index', { title: 'Contact Us', page: 'contact', displayName: ''    });
 }
 
 export function DisplayLoginPage(req:Request, res:Response, next:NextFunction): void
 {
     if(!req.user)
     {
-       return res.render('index', 
-       {  
+        res.render('index', {  
             title: 'Login', 
             page: 'login', 
             messages:req.flash('loginMessage'),
-            displayName: UserDisplayName(req)   
+            displayName: req.user ? req.user.displayName : ''   
         });
     }
     return res.redirect('/contact-list');
@@ -62,12 +50,12 @@ export function DisplayRegisterPage(req:Request, res:Response, next:NextFunction
 {
     if(!req.user)
     {
-        return res.render('index', 
-            { 
+        res.render('index', { 
             title: 'Register',
              page: 'register', 
              messages:req.flash('registerMessage'),
-             displayName: UserDisplayName(req)    
+             displayName: ''    
+            
             });
     }
     return res.redirect('/contact-list');
@@ -108,43 +96,15 @@ export function ProcessLoginPage(req:Request, res:Response, next:NextFunction): 
 
 export function ProcessLogoutPage(req:Request, res:Response, next:NextFunction): void
 {
-   req.logout();
-   console.log("User Logged Out");
-   res.redirect('/login');
+    res.render('index', { title: 'Home', page: 'home', displayName: ''    });
 }
 
 export function ProcessRegisterPage(req:Request, res:Response, next:NextFunction): void
 {
-    //instantiate a new user object 
-    let newUser = new User
-    ({
-        username: req.body.username,
-        emailAddress: req.body.EmailAddress,
-        displayName: req.body.FirstName + " " + req.body.LastName
-
-    });
-    User.register(newUser, req.body.password,(err) =>
-    {
-        if(err){
-            console.error('Error: Inserting New User');
-            if(err.name == "UserExistsError")
-            {
-                req.flash('registerMessage', 'Registration Error');
-                console.error('Error: User Already Exists');
-            }
-            return res.redirect('/register');
-        }
-
-        // automatically login the user
-        return passport.authenticate('local')(req,res,()=>
-        {
-
-            return res.redirect('/contact-list');
-        });
-    });
+    res.render('index', { title: 'Home', page: 'home', displayName: ''    });
 }
 
 export function ProcessContactPage(req:Request, res:Response, next:NextFunction): void
 {
-    res.render('index', { title: 'Home', page: 'home',displayName: UserDisplayName(req)    });
+    res.render('index', { title: 'Home', page: 'home', displayName: ''    });
 }

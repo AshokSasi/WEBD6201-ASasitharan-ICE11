@@ -1,5 +1,4 @@
 
-
 namespace core
 {
    
@@ -121,16 +120,28 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+
     }
 
+    function performLogout():void
+    {
+        sessionStorage.clear();
+        location.href = '/login';
+    }
 
-   function displayRegister()
-   {
+    function authGuard():void
+    {
+      if(!sessionStorage.getItem("user"))
+      {
+      location.href = '/login';
+      }
+    }
 
-   }
+    function display404():void
+    {
 
-   
+    }
+
     
 
     /**
@@ -151,8 +162,9 @@ namespace core
         case 'login':
           displayLogin();
           break;
+        case 'logout':
+          performLogout();
         case 'register':
-          displayRegister();
           break;
         case 'contact-list':
           displayContactList();

@@ -1,4 +1,4 @@
-
+import { DisplayRegisterPage } from "../../Server/Controllers";
 
 namespace core
 {
@@ -121,7 +121,7 @@ namespace core
 
     function displayLogin():void
     {
-      //TODO Validation
+
     }
 
 
