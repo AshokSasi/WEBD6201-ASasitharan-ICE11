@@ -53,21 +53,7 @@ app.use(session({
   resave: false
 }));
 
-//initialize flash
-app.use(flash());
 
-//initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-//implement an auth strategy
-passport.use(User.createStrategy());
-
-//seralize and deserialize user data
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-//route configuration
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
