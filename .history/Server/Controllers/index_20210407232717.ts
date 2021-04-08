@@ -36,12 +36,7 @@ export function DisplayLoginPage(req:Request, res:Response, next:NextFunction): 
 {
     if(!req.user)
     {
-        res.render('index', {  
-            title: 'Login', 
-            page: 'login', 
-            messages:req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName : ''   
-        });
+        res.render('index', { title: 'Login', page: 'login', displayName: ''    });
     }
     return res.redirect('/contact-list');
 }
@@ -80,12 +75,13 @@ export function ProcessLoginPage(req:Request, res:Response, next:NextFunction): 
                 console.error(err);
                 return next(err);
             }
-
-            return res.redirect('/contact-list');
-            
         });
-    })(req,res,next);
+    });
 
+
+
+
+    res.redirect('/contact-list');
 }
 
 export function ProcessLogoutPage(req:Request, res:Response, next:NextFunction): void

@@ -120,7 +120,8 @@ namespace core
 
     function displayLogin():void
     {
-/*       
+      let messageArea = $("#messageArea");
+      messageArea.hide();
 
       $("#loginButton").on("click", function() 
       {
@@ -168,7 +169,7 @@ namespace core
         // clear the login form
         document.forms[0].reset();
         location.href = '/home';
-      }); */
+      });
     }
 
     function performLogout():void
