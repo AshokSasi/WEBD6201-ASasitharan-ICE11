@@ -6,7 +6,7 @@ import passport from 'passport';
 import User from '../Models/user';
 
 //Include Util Function
-import {UserDisplayName} from  "../Util/index";
+
 
 
 //Display page functions

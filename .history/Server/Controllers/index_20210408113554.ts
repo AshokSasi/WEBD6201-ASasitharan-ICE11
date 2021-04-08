@@ -5,8 +5,8 @@ import passport from 'passport';
 //create User Model Instance
 import User from '../Models/user';
 
-//Include Util Function
-import {UserDisplayName} from  "../Util/index";
+//Helper Function
+
 
 
 //Display page functions

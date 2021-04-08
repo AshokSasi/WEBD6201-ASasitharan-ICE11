@@ -54,3 +54,4 @@ router.get('/logout', ProcessLogoutPage);
 router.post('/register', ProcessRegisterPage);
 
 
+/********************** temporary routes - contact-list related pages **********************/
