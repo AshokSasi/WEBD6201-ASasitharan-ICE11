@@ -1,57 +1,73 @@
 // Express Configuration
 import express from 'express';
-const router = express.Router();
-export default router;
+ const router = express.Router();
+ export default router;
 
 // Contact Model
 import Contact from "../Models/contact";
 
-// Create an Index Controller Instance
-import { DisplayAboutPage, DisplayContactPage, DisplayHomePage, DisplayLoginPage, DisplayProjectsPage, 
-  DisplayRegisterPage, DisplayServicesPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage } from "../Controllers/index";
+//Create an index controller instance
+import {DisplayHomePage} from "../Controllers/index";
 
 /* GET home page - with / */
 router.get('/', DisplayHomePage);
 
-
 /* GET home page - with /home */
-router.get('/home', DisplayHomePage);
-
+router.get('/home', function(req, res, next) 
+{
+  res.render('index', { title: 'Home', page: 'home', displayName: ''    });
+});
 
 /* GET about page - with /about */
-router.get('/about', DisplayAboutPage);
-
+router.get('/about', function(req, res, next) 
+{
+  res.render('index', { title: 'About Us', page: 'about', displayName: ''    });
+});
 
 /* GET services page - with /services */
-router.get('/services', DisplayServicesPage);
-
+router.get('/services', function(req, res, next) 
+{
+  res.render('index', { title: 'Our Services', page: 'services', displayName: ''    });
+});
 
 /* GET projects page - with /projects */
-router.get('/projects', DisplayProjectsPage);
-
+router.get('/projects', function(req, res, next) 
+{
+  res.render('index', { title: 'Our Projects', page: 'projects', displayName: ''    });
+});
 
 /* GET contact page - with /contact */
-router.get('/contact', DisplayContactPage);
-
+router.get('/contact', function(req, res, next) 
+{
+  res.render('index', { title: 'Contact Us', page: 'contact', displayName: ''    });
+});
 
 /* GET login page - with /login */
-router.get('/login', DisplayLoginPage);
+router.get('/login', function(req, res, next) 
+{
+  res.render('index', { title: 'Login', page: 'login', displayName: ''    });
+});
+
+
+/**************** Temporary routes for authentication and registration *********************/
+/* GET login page - with /login */
+router.post('/login', function(req, res, next) 
+{
+  res.redirect('/contact-list');
+});
 
 
 /* GET register page - with /register */
-router.get('/register', DisplayRegisterPage);
+router.get('/register', function(req, res, next) 
+{
+  res.render('index', { title: 'Register', page: 'register', displayName: ''    });
+});
 
-/********************** temporary routes - for authentication **********************/
-
-/* Process login page - with /login */
-router.post('/login', ProcessLoginPage);
-
-
-/* Process logout page - with /logout */
-router.get('/logout', ProcessLogoutPage);
-
-/* Process login page - with /login */
-router.post('/register', ProcessRegisterPage);
+/* GET logout page - with /logout */
+router.get('/logout', function(req, res, next) 
+{
+  res.render('index', { title: 'Logout', page: 'logout', displayName: ''    });
+});
 
 
 /********************** temporary routes - contact-list related pages **********************/
@@ -164,3 +180,5 @@ router.get('/delete/:id', function(req, res, next)
   });
   
 });
+
+
